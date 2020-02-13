@@ -2,9 +2,6 @@ const { Task } = require("../models");
 
 class taskController {
   static getAll(req, res, next) {
-    // console.log("sampe");
-    // res.status(200).json('masuk')
-
     Task.findAll()
       .then(data => {
         // console.log("disini");

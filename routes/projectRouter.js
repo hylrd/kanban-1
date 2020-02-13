@@ -5,6 +5,7 @@ const authenticated = require('../middlewares/authenticated')
 router.post('/', projectController.add)
 router.get('/', projectController.getAll)
 router.post('/collab', projectController.collab)
+router.get('/:id', projectController.getListUser)
 router.delete('/:id', projectController.remove)
 router.put('/:id', projectController.update)
 

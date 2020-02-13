@@ -63,6 +63,21 @@ class projectController{
     })
   }
 
+  static getListUser(req, res, next){
+    Project.findAll({
+      include: [User],
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(data => {
+        res.status(200).json(data)
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      })
+  }
+
   static collab(req, res, next){
     let projectId = req.body.projectId 
     User.findOne({
