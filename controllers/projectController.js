@@ -4,14 +4,42 @@ const {projectUser} = require('../models')
 
 class projectController{
 
+  static removeUser(req, res, next){
+    // console.log(req.params.id, 'dari controller');
+    //aremove projectId
+    projectUser.destroy({
+      where:{
+        UserId: req.params.userId,
+        ProjectId: req.params.projectId
+      }
+    })
+    .then(user =>{
+      // req.io.emit("userList");
+      res.status(200).json(user)
+    })
+    .catch(err =>{
+      res.status(500).json(err)
+    })
+  }
+
   static add(req, res, next){
     Project.create({
       name: req.body.name
     })
     .then(data =>{
-      req.io.emit("project", data);
+      let newProject = data
+      req.io.emit("project", newProject);
+      return projectUser.create({
+        ProjectId: data.id,
+        UserId: req.currentUserId
+      })
 
-      res.status(200).json(data)
+      console.log(data), 'ini data';
+      
+    })
+    .then(dataCollab =>{
+      
+      res.status(200).json(dataCollab)
     })
     .catch(err =>{
       res.status(500).json(err)
@@ -71,6 +99,7 @@ class projectController{
       }
     })
       .then(data => {
+        // req.io.emit("addedUser", data);
         res.status(200).json(data)
       })
       .catch(err => {
