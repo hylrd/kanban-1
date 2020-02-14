@@ -30,7 +30,7 @@ app.use(cors())
 
 app.get('/', function (req, res) {
   // res.send(images);
-  res.send('masup kang')
+  res.status(200).json('masup kang')
 });
 
 // app.post('/chat', function (req, res) {
