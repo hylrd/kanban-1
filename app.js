@@ -7,6 +7,7 @@ const port = 3000
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 const routes = require('./routes')
+const errorHandler = require('./middlewares/errorHandler')
 
 app.use(express.json()) 
 app.use(express.urlencoded({extended: false}))
@@ -39,6 +40,7 @@ io.on('connection', function (socket) {
   });
   
   app.use(routes)
+  app.use('/', errorHandler)
 
   // socket.emit('news', { hello: 'world' });
   // socket.on('greetings', function (com, num) {

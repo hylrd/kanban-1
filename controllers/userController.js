@@ -20,11 +20,7 @@ class userController {
         console.log(data.Projects);
         res.status(200).json(data.Projects);
       })
-      .catch(err => {
-        console.log(err.message, " <<");
-
-        res.status(500).json(err);
-      });
+      .catch(next);
   }
 
   static register(req, res, next) {
@@ -43,9 +39,7 @@ class userController {
         // console.log(name, 'ini data');
         res.status(200).json({ token, name });
       })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+      .catch(next);
   }
 
   static login(req, res, next) {
@@ -68,9 +62,7 @@ class userController {
           res.status(500).json("wrong password/email");
         }
       })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+      .catch(next);
   }
 
   static gSignin(req, res, next) {

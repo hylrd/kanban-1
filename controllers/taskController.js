@@ -7,11 +7,7 @@ class taskController {
         // console.log("disini");
         res.status(200).json(data);
       })
-      .catch(err => {
-        console.log(err.message);
-
-        res.status(500).json(err);
-      });
+      .catch(next);
   }
 
   static add(req, res, next) {
@@ -26,9 +22,7 @@ class taskController {
         req.io.emit("news", data);
         res.status(200).json(data);
       })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+      .catch(next);
   }
 
   static remove (req, res, next){
@@ -42,9 +36,7 @@ class taskController {
 
       res.status(200).json(data);
     })
-    .catch(err => {
-      res.status(500).json(err);
-    });
+    .catch(next);
 
   }
 
@@ -63,9 +55,7 @@ class taskController {
       req.io.emit("fetchTask");
       res.status(200).json(data);
     })
-    .catch(err => {
-      res.status(500).json(err);
-    });
+    .catch(next);
   }
 }
 

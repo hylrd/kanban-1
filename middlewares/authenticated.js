@@ -24,8 +24,8 @@ module.exports = function(req, res, next) {
     //   });
     if (decoded) {
       req.currentUserId = decoded.id;
-      console.log(req.currentUserId, "dari uthenticated");
-      // console.log("masuk kesini", decoded);
+      console.log(req.currentUserId, "dari authenticated");
+      console.log("masuk kesini", decoded);
 
       User.findOne({
         where: {
@@ -33,7 +33,7 @@ module.exports = function(req, res, next) {
         }
       })
         .then(data => {
-          console.log("then");
+          // console.log("then");
           // next();
           if (data) {
             // console.log(data);

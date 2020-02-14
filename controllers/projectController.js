@@ -17,9 +17,7 @@ class projectController{
       // req.io.emit("userList");
       res.status(200).json(user)
     })
-    .catch(err =>{
-      res.status(500).json(err)
-    })
+    .catch(next)
   }
 
   static add(req, res, next){
@@ -41,9 +39,7 @@ class projectController{
       
       res.status(200).json(dataCollab)
     })
-    .catch(err =>{
-      res.status(500).json(err)
-    })
+    .catch(next)
   }
 
   static getAll(req, res, next){
@@ -67,9 +63,7 @@ class projectController{
 
       res.status(200).json(data)
     })
-    .catch(err =>{
-      res.status(500).json(err)
-    })
+    .catch(next)
   }
 
   static update(req, res, next){
@@ -86,9 +80,7 @@ class projectController{
       req.io.emit("fetchProject", data);
       res.status(200).json(data)
     })
-    .catch(err =>{
-      res.status(500).json(err)
-    })
+    .catch(next)
   }
 
   static getListUser(req, res, next){
@@ -102,9 +94,7 @@ class projectController{
         // req.io.emit("addedUser", data);
         res.status(200).json(data)
       })
-      .catch(err => {
-        res.status(500).json(err)
-      })
+      .catch(next)
   }
 
   static collab(req, res, next){
@@ -133,9 +123,7 @@ class projectController{
       // console.log(datalagi[0],' dan', datalagi[0].UserId);
       res.status(200).json(datalagi[0])
     })
-    .catch(err =>{
-      res.status(500).json(err)
-    })
+    .catch(next)
   }
 }
 
