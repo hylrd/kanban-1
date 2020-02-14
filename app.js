@@ -3,19 +3,23 @@ if(process.env.NODE_ENV == "development"){
 }
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000
-// var server = require('https').Server(app);
-var io = require('socket.io')(server);
+// const port = 3000
+// var server = require('http').Server(app);
+// var io = require('socket.io')(server);
 const routes = require('./routes')
 const errorHandler = require('./middlewares/errorHandler')
 
 app.use(express.json()) 
 app.use(express.urlencoded({extended: false}))
 
+const PORT = process.env.PORT || 3000;
 const INDEX = '/index.html';
+
 const server = express()
   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+var io = require('socket.io')(server);
+
 // server.listen(port, ()=>{
 //     console.log('connected');
 // });
@@ -26,6 +30,7 @@ app.use(cors())
 
 app.get('/', function (req, res) {
   // res.send(images);
+  res.send('masup kang')
 });
 
 // app.post('/chat', function (req, res) {
