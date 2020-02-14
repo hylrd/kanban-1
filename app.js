@@ -4,7 +4,7 @@ if(process.env.NODE_ENV == "development"){
 const express = require('express')
 const app = express()
 const port = 3000
-var server = require('http').Server(app);
+var server = require('https').Server(app);
 var io = require('socket.io')(server);
 const routes = require('./routes')
 const errorHandler = require('./middlewares/errorHandler')
@@ -62,4 +62,4 @@ io.on('connection', function (socket) {
 // });
 
 
-// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
