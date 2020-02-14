@@ -12,9 +12,13 @@ const errorHandler = require('./middlewares/errorHandler')
 app.use(express.json()) 
 app.use(express.urlencoded({extended: false}))
 
-server.listen(port, ()=>{
-    console.log('connected');
-});
+const INDEX = '/index.html';
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+// server.listen(port, ()=>{
+//     console.log('connected');
+// });
 // WARNING: app.listen(80) will NOT work here!
 
 var cors = require('cors')
