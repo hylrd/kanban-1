@@ -3,7 +3,7 @@ if(process.env.NODE_ENV == "development"){
 }
 const express = require('express')
 const app = express()
-// const port = 3000
+const port = process.env.PORT
 var server = require('https').Server(app);
 var io = require('socket.io')(server);
 const routes = require('./routes')
