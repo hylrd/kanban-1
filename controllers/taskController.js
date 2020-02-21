@@ -57,6 +57,24 @@ class taskController {
     })
     .catch(next);
   }
+
+  static updateTask(req, res, next){
+    Task.update({
+      title: req.body.title,
+      assignee: req.body.assignee,
+      desc: req.body.desc,
+    }, {
+      where: {
+        id: req.params.id
+      },
+      returning: true
+    })
+    .then(data => {
+      req.io.emit("fetchTask");
+      res.status(200).json(data);
+    })
+    .catch(next);
+  }
 }
 
 module.exports = taskController;
